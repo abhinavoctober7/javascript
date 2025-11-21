@@ -1,0 +1,90 @@
+Great point — numbers and strings look like they have methods, but they do NOT actually store methods or grow in size like objects.
+
+This confuses many people, so let me explain it clearly and simply 👇
+
+✅ Primitives (string, number, boolean) DO NOT have real methods
+
+When you do:
+"hello".toUpperCase()
+(42).toFixed(2)
+
+it looks like the primitive has methods, but it does NOT.
+
+Instead, JavaScript does a temporary magic trick.
+✨ JavaScript temporarily wraps primitives in objects
+
+When you call a method on a primitive:
+Example: "hello".toUpperCase()
+
+
+JavaScript internally does:
+1. Convert "hello" (primitive) → String object wrapper
+2. Call String.prototype.toUpperCase on the wrapper
+3. Destroy the temporary wrapper
+4. Return result
+
+
+So in reality:
+
+"hello" → is primitive  ✔
+new String("hello") → temporary wrapper object ✔
+
+📌 This is called “Boxing” or “Primitive Wrapper Objects”
+
+Primitive → Wrapped in object → Method runs → Wrapper thrown away.
+
+These wrapper objects are:
+
+Primitive	Wrapper Object
+string	    String
+number	    Number
+boolean	    Boolean
+symbol	    Symbol
+bigint	    BigInt
+🛑 But primitives themselves do not store methods in memory
+
+"hello" does NOT store toUpperCase
+42 does NOT store toFixed
+true does NOT store valueOf
+
+All methods actually live on:
+String.prototype
+Number.prototype
+Boolean.prototype
+
+
+The primitive borrows them temporarily.
+
+This is why primitives are:
+stored on stack, simple, fixed-size, cannot grow
+
+🔥 Difference Example
+Object string:
+const s = new String("hello");
+console.log(typeof s); // 'object'
+
+Primitive string:
+const s = "hello";
+console.log(typeof s); // 'string'
+
+
+The object version lives in heap.
+The primitive version lives in stack.
+
+⭐ So why primitives have “methods”?
+
+Because JS auto-boxes them:
+✔ They temporarily borrow methods from their wrapper prototypes.
+✔ This trick gives modern-feeling syntax.
+✔ But they remain primitive values, NOT objects.
+
+🧠 Final Answer (Interview Friendly)
+
+Primitives like numbers and strings seem to have methods, but they don’t.
+JavaScript temporarily wraps them inside an object (String, Number) to provide methods.
+The primitive itself never grows, never stores properties, and stays in stack memory.
+
+That’s why:
+
+👉 Primitives = not objects
+👉 Arrays, functions, maps, sets = real objects stored in heap

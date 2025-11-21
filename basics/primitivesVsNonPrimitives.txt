@@ -1,0 +1,87 @@
+✅ Why are arrays, functions, dates, regex, maps, sets → all objects?
+
+Because in JavaScript:
+👉 Everything that is not a primitive is an object.
+👉 Objects are the only complex (non-primitive) data type.
+
+So JS does not have separate memory models for:
+1. Arrays
+2. Functions
+3. Maps
+4. Sets
+5. Dates
+6. Regex
+7. Classes
+Anything else
+
+All of them are just specialized objects with extra behavior.
+
+🧠 JavaScript Data Types
+1. Primitive Types (stored directly on Stack)
+number, string, boolean, null, undefined, bigint, symbol
+
+2. Everything else → Objects (stored on Heap)
+Array, Function, Object literal, Map, Set, Date, Regex, Error, Promise, Class instance, … and more
+
+⚙️ How JavaScript internally handles them
+All complex structures need:
+
+1. dynamic size
+2. methods
+3. metadata
+4. internal properties
+
+This is why JS stores them in the Heap, and only stores a reference in the stack.
+
+📦 Example — Array is an object
+const arr = [1, 2, 3];
+
+
+Internally JS does:
+
+STACK                                 HEAP
+---------------------------------     ---------------------
+arr → (address) --------------------> { 0:1, 1:2, 2:3, length:3 }
+                                      [[Prototype]] → Array.prototype
+
+
+Array is basically an object with:
+numeric keys, a length property, prototype methods (push, pop, …)
+
+🧩 Example — Function is an object
+function greet() { console.log("hi"); }
+
+Internally:
+
+STACK                             HEAP
+-----------------------------     -------------------------------
+greet → address --------------->  { 
+                                    code: "function body",
+                                    name: "greet",
+                                    [[Prototype]]: Function.prototype
+                                  } (METADATA)
+
+
+Functions are objects with executable code attached.
+
+🗓 Date is an object
+const today = new Date();
+
+Heap stores:
+internal timestamp
+prototype methods (getFullYear, toISOString…)
+
+
+🔍 Regex is an object
+const re = /ab+c/;
+
+Heap stores:
+pattern
+flags
+match state
+
+🗺 Map / Set are objects
+
+They are just objects with optimized internal storage engines.
+
+👉 Anything that grows, has methods, or has internal properties = OBJECT = stored in HEAP.

@@ -1,0 +1,74 @@
+⚡ Stack vs Heap (Super Simple Explanation)
+
+Think of your program like a restaurant:
+Stack = the kitchen counter where orders are placed in strict order.
+Heap = the store room where large or flexible items are stored.
+
+
+🥞 STACK — Fast, Organized, Fixed-size
+✔ Very fast
+✔ Stores small, fixed-size data
+✔ LIFO (Last In, First Out) — like plates stacked
+✔ Memory is automatically freed when function ends
+
+
+What goes to Stack?
+Primitive values (numbers, boolean, string reference, etc.)
+Function call frames (variables inside functions)
+Address pointing to objects in heap
+
+Example
+function test() {
+  let a = 10;     // primitive → stack
+  let b = 20;     // primitive → stack
+  
+  let obj = { x: 5 }; // obj reference → stack
+                      // actual object → heap
+}
+
+
+Visual:
+STACK                          HEAP
+-------------------          -------------
+a = 10                       
+b = 20                       
+obj → ---------------------> { x: 5 }
+
+
+When function ends → a, b, and obj pointer are removed.
+But the object in heap stays until garbage-collected.
+
+
+
+🧳 HEAP — Big, Flexible, Slower
+✔ Used for dynamic / big / unknown-size data
+✔ No strict order
+✔ Memory is manually managed (or GC does it)
+
+
+What goes to Heap?
+Objects
+Arrays
+Functions
+Anything with dynamic size
+
+Example:
+
+const arr = [1, 2, 3, 4];
+
+
+arr reference → stack
+
+Actual [1,2,3,4] → heap
+
+🤔 Why not put everything in stack?
+
+Because stack is:
+Small (limited size)
+Fast but strict order
+Can't store big/dynamic data
+
+Heap is:
+Large, flexible
+Good for objects/arrays/functions
+But slower to access

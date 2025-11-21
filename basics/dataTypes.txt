@@ -1,0 +1,46 @@
+✅ In ES5 (old JavaScript)
+
+There were only 5 primitive data types:
+
+1. Number
+
+2. String
+
+3. Boolean
+
+4. Undefined
+
+5. Null
+
+✔ This is what older interview books/notes mention.
+✔ Before ES6, only these 5 were considered primitive.
+
+✅ In Modern JavaScript (ES6+)
+
+JavaScript added new primitives, so now there are 7 primitive types:
+
+1. Number
+
+2. String
+
+3. Boolean
+
+4. Undefined
+
+5. Null
+
+6. Symbol (added in ES6)
+
+7. BigInt (added in ES2020)
+
+🔥 So what's correct?
+✔ If interviewer means modern JS → 7 primitives
+✔ If interviewer means ES5 (old JS) → 5 primitives
+
+Both are correct based on context.
+
+📌 Non-primitive (always 1 type)
+
+Object
+
+Arrays, functions, dates, regex, maps, sets → all objects.

@@ -1,0 +1,32 @@
+undefined == null is true because of JavaScript’s loose (==) equality rules.
+Let’s break it down in the simplest possible way 👇
+
+✅ 1. == does type coercion
+The double-equals (==) operator converts both values to a common type before comparison.
+
+JavaScript has a special rule:
+👉 undefined is loosely equal ONLY to null
+Nothing else. So this is true: undefined == null  // true
+
+
+Because JS says:
+When comparing undefined and null using ==, treat them as equal.
+❌ But this is NOT true with ===
+undefined === null  // false
+
+
+Because strict equality (===) compares:
+value AND data type
+
+undefined → type: "undefined"
+null → type: "object" (JS quirk)
+
+So they are not strictly equal.
+
+⚙️ Why does JavaScript do this?
+
+Because both represent "no value", but in different ways:
+undefined → variable exists but no value assigned (accidental)
+null → intentional empty value (developer sets it)
+
+So Brendan Eich (JS creator) made them equal in == to reduce errors in early JS.

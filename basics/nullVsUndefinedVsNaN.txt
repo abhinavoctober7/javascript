@@ -1,0 +1,174 @@
+In JavaScript, null is one of the primitive data types. It represents:
+
+✅ “Intentional absence of value”
+It means you deliberately set something to nothing.
+Example: let user = null;  
+
+This means:
+✔️ user exists
+✔️ but currently has no value
+✔️ intentionally empty (not an accident)
+
+🔍 null vs undefined
+undefined
+➡️ Value is missing accidentally
+➡️ Variable declared but never assigned
+
+Example:
+let a;
+console.log(a); // undefined
+
+null
+➡️ Value is missing intentionally
+➡️ Developer sets it manually
+
+Example:
+let b = null;
+console.log(b); // null
+
+☑️ Technical Details about null
+1. typeof null is "object" (a bug)
+
+This is a famous JavaScript design mistake.
+typeof null; // "object"
+
+But null is NOT an object — it’s a primitive.
+
+2. null means: no object
+
+When you do:
+
+let person = null;
+You’re saying:
+
+"This should later hold an object, but right now it is empty."
+
+3. Common Uses
+- Resetting a variable
+- Clearing an object
+- Indicating "no data found"
+
+Example:
+
+function findUser() {
+  return null; // user not found
+}
+
+🧠 Why do we need null if we have undefined?
+
+Because they express different meanings:
+
+Value	    Meaning
+undefined	Not assigned / missing accidentally
+null	    Empty on purpose / intentional absence
+
+✨ Summary
+null is a primitive.
+Represents intentional absence of value.
+typeof null is "object" (bug).
+
+
+
+
+
+
+
+In JavaScript, undefined is a primitive value that means:
+✅ “A variable exists, but no value has been assigned to it.”
+It represents absence of value — but unintentionally.
+
+🔍 When do you get undefined?
+1. Variable declared but not assigned
+let x;
+console.log(x);  // undefined
+
+2. Function without a return statement
+function test() {}
+console.log(test());  // undefined
+
+3. Accessing a missing object property
+let user = {};
+console.log(user.name); // undefined
+
+4. Accessing array elements out of range
+let arr = [10];
+console.log(arr[5]);  // undefined
+
+5. Missing function parameter
+function greet(name) {
+  console.log(name);
+}
+greet();    // undefined
+
+🆚 Difference Between undefined and null
+Value	     Meaning	                       Who sets it?
+undefined	 No value assigned by accident	 JavaScript engine
+null	     No value on purpose	           Developer
+
+Example:
+let a;      // undefined → JS sets it
+let b = null;  // null → we set it deliberately
+
+🔧 Type of undefined
+typeof undefined; // "undefined"
+
+❗ Common Misconceptions
+❌ "undefined means variable not declared"
+
+Incorrect.
+
+If a variable is not declared, it throws error:
+console.log(notDeclared); // ReferenceError
+
+☑️ Summary
+undefined means no value assigned.
+Set automatically by JavaScript.
+Common when reading missing data.
+Different from null (intentional empty value).
+
+
+
+
+
+
+
+NaN in JavaScript means Not-a-Number.
+But the name is misleading—because NaN itself is a number type, just a special one.
+Let me explain very clearly 👇
+
+✅ What is NaN?
+NaN is a special numeric value that represents:
+A value that is supposed to be a number, but the result is not a valid number.
+It occurs when a numeric operation fails.
+
+📌 Examples of NaN
+❌ 1. Invalid mathematical operations
+0 / 0       // NaN
+Math.sqrt(-1) // NaN
+
+❌ 2. Converting non-number strings to numbers
+Number("Hello")   // NaN
+parseInt("abc")   // NaN
+
+❌ 3. Performing arithmetic with undefined
+10 * undefined   // NaN
+
+❌ 4. Subtracting non-numeric values
+"abc" - 10   // NaN
+
+🧠 Important Facts About NaN
+1️⃣ NaN is of type "number"
+typeof NaN   // "number"
+
+2️⃣ NaN is the only value in JS that is NOT equal to itself
+NaN == NaN       // false
+NaN === NaN      // false
+
+
+Because it's considered an invalid number, so it can't equal anything—not even itself.
+
+This is why JS has a special checker:
+
+✔ Use Number.isNaN()
+Number.isNaN(NaN);        // true
+Number.isNaN("Hello");    // false

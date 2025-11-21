@@ -1,0 +1,98 @@
+You can add properties to Function, Set, and Map — but how those properties behave is different because each type has its own storage mechanism.
+
+Let’s break it down very clearly 👇
+
+✅ 1. Functions can have custom properties (because they are objects)
+
+In JavaScript, functions are objects with executable code, so you can attach properties exactly like you do with objects.
+
+✔ Example:
+function greet() {
+  console.log("Hello");
+}
+
+greet.author = "Abhinav";
+greet.version = 1.0;
+
+console.log(greet.author);   // Abhinav
+console.log(greet.version);  // 1
+
+Why this works?
+
+Because internally, a function is an object:
+
+{
+  name: "greet",
+  code: function body,
+  author: "Abhinav",
+  version: 1.0,
+  [[Prototype]]: Function.prototype
+}
+
+
+So functions act like normal objects + can be called.
+
+
+
+
+✅ 2. Adding custom properties to a Set
+
+A Set is also an object.
+
+So adding properties works:
+
+const s = new Set();
+
+s.name = "MySet";
+s.createdBy = "Abhinav";
+
+console.log(s.name);       // MySet
+console.log(s.createdBy);  // Abhinav
+
+✔ But set elements must be added using .add():
+s.add(10);
+s.add(20);
+
+👀 Important:
+
+Custom properties do NOT affect the internal Set values.
+
+They are simply added to the object wrapper.
+
+
+
+
+✅ 3. Adding custom properties to a Map
+
+Same as Set — Map is also an object.
+
+Example:
+const m = new Map();
+
+m.title = "Users Data";
+m.description = "Stores user IDs";
+
+console.log(m.title);        // Users Data
+console.log(m.description);  // Stores user IDs
+
+✔ But map key-value pairs must be added via .set():
+m.set("id", 101);
+m.set("name", "Abhinav");
+
+❗ Adding a normal property is not stored inside Map’s internal key-value structure.
+🧠 So what’s happening?
+
+All of these: Function, Set, Map Are ultimately objects stored in the heap.
+
+So we can always do:
+
+obj.someCustomProperty = value;
+
+
+But:
+
+🚫 What is stored inside Set/Map structure
+
+→ must be added using .add() or .set().
+✔ What is stored on the object (as meta-data)
+→ can be added like any normal property.
