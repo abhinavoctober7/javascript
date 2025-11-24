@@ -1,0 +1,42 @@
+🔥 Polyfills (Internal Working)
+⭐ Polyfill for call()
+Function.prototype.myCall = function (context, ...args) {
+  context = context || globalThis;   // default to global (window/global)
+  const fn = Symbol();               // temporary unique key
+  context[fn] = this;                // 'this' = function
+  const result = context[fn](...args);
+  delete context[fn];                // cleanup
+  return result;
+};
+
+⭐ Polyfill for apply()
+Function.prototype.myApply = function (context, argsArray = []) {
+  context = context || globalThis;
+  const fn = Symbol();
+  context[fn] = this;
+  const result = context[fn](...argsArray);
+  delete context[fn];
+  return result;
+};
+
+⭐ Polyfill for bind()
+Function.prototype.myBind = function (context, ...args) {
+    const fn = this;
+    return function (...newArgs) {
+        return fn.call(context, ...args, ...newArgs);
+  };
+};
+
+🔥 Test Your Polyfills
+function intro(age, city) {
+  console.log(this.name, age, city);
+}
+
+const user = { name: "Abhinav" };
+
+intro.myCall(user, 25, "Delhi");
+
+intro.myApply(user, [25, "Delhi"]);
+
+const fn = intro.myBind(user, 25);
+fn("Delhi");

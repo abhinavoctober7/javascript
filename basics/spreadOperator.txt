@@ -1,0 +1,81 @@
+✅ What is the Spread Operator? (...)
+👉 Spread (...) expands an array, object, or string into individual elements.
+Think of it like “opening the box”.
+Example: console.log(...[1, 2, 3]);
+Output: 1 2 3
+
+The array [1,2,3] is opened into separate values.
+
+🎯 WHERE Spread Operator is used?
+
+There are 3 major uses:
+1️⃣ Copy arrays (shallow copy)
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1];
+console.log(arr2); // [1, 2, 3]
+
+Without spread:
+const arr2 = arr1; // ❌ reference copy
+Both point to the same array.
+
+2️⃣ Merge arrays
+const a = [1, 2];
+const b = [3, 4];
+const c = [...a, ...b];
+console.log(c); // [1, 2, 3, 4]
+
+3️⃣ Add items to array easily
+const arr = [1, 2, 3];
+const updated = [0, ...arr, 4];
+console.log(updated);
+// [0, 1, 2, 3, 4]
+
+4️⃣ Copy objects (shallow copy)
+const obj1 = { name: "Abhinav", age: 25 };
+const obj2 = { ...obj1 };
+console.log(obj2);
+// { name: "Abhinav", age: 25 }
+
+5️⃣ Merge objects
+const o1 = { a: 1 };
+const o2 = { b: 2 };
+const o3 = { ...o1, ...o2 };
+console.log(o3); // { a: 1, b: 2 }
+
+6️⃣ Pass array values into a function
+
+Old way:
+Math.max.apply(null, [1, 2, 3]);
+
+Modern way:
+Math.max(...[1, 2, 3]); // 3
+Much cleaner.
+
+7️⃣ Convert string into array (spread chars)
+console.log([..."ABHI"]);
+// ["A", "B", "H", "I"]
+
+🧠 Important Note
+Spread operator does shallow copy, not deep copy.
+
+Meaning:
+
+const a = [{x: 1}, {y: 2}];
+const b = [...a];
+
+a[0].x = 99;
+console.log(b[0].x);  // 99 ❗
+
+Because inner objects are references, not copied.
+
+🔥 Summary (the shortest way)
+Spread operator = breaks container into parts
+
+Examples:
+
+Operation	            Example
+Copy array	            [...arr]
+Merge arrays	        [...a, ...b]
+Copy object	            {...obj}
+Merge objects	        {...obj1, ...obj2}
+Spread into function    fn(...args)

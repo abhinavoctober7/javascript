@@ -1,0 +1,65 @@
+The rest operator (...) in JavaScript allows you to collect multiple values into a single array.
+It is the opposite of the spread operator, which expands values.
+
+✅ REST Operator (...) — Collects Values
+
+Rest operator is used in function parameters or destructuring to gather remaining values into an array.
+1️⃣ Rest in Functions
+
+It collects all extra arguments into an array. Example:
+function sum(...numbers) {
+    console.log(numbers);
+    return numbers.reduce((acc, curr) => acc + curr, 0);
+}
+console.log(sum(1, 2, 3, 4));
+Output: [1, 2, 3, 4], 10
+
+✔ You can pass any number of arguments
+✔ Rest collects them into an array numbers
+
+2️⃣ Rest with Destructuring (Arrays)
+Example: const arr = [10, 20, 30, 40, 50];
+
+const [first, second, ...rest] = arr;
+console.log(first);   // 10
+console.log(second);  // 20
+console.log(rest);    // [30, 40, 50]
+
+✔ First two values assigned individually
+✔ Remaining values collected in rest
+
+3️⃣ Rest with Objects
+Example
+const obj = { a: 1, b: 2, c: 3, d: 4 };
+
+const { a, b, ...rest } = obj;
+console.log(a);     // 1
+console.log(b);     // 2
+console.log(rest);  // { c: 3, d: 4 }
+
+
+✔ Rest collects remaining key–value pairs.
+
+❗ Important Rules of Rest Operator
+✔ Must be the last parameter
+❌ This is wrong: function demo(a, ...rest, b) { }
+✔ Only one rest parameter allowed
+
+REST vs SPREAD — Quick Difference
+Feature	        Rest (...)	                    Spread (...)
+Purpose	        Collect values	                Expand values
+Used in	        Parameters, destructuring	    Arrays, objects, function calls
+Output	        Always array	                Multiple values
+
+
+
+⭐ Quick Example: Rest vs Spread
+function fun(a, b, ...rest) {
+    console.log(a, b);     // 1 2
+    console.log(rest);     // [3, 4, 5]
+}
+
+fun(...[1, 2, 3, 4, 5]);
+Here:
+spread expands → fun(1,2,3,4,5)
+rest collects → rest = [3,4,5]

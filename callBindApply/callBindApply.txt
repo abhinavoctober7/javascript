@@ -1,0 +1,57 @@
+Here is the cleanest, simplest explanation of call, apply, bind — what they are, why they exist, and how they differ.
+
+🔥 WHY do call/apply/bind exist?
+They exist to control what this refers to.
+
+Example problem:
+const person = { name: "Abhinav" };
+
+function greet() {
+  console.log("Hello " + this.name);
+}
+greet() does NOT know whose name to use.
+
+So we use:
+1. greet.call(person)
+2. greet.apply(person)
+3. greet.bind(person)
+
+✅ 1. call()
+👉 Immediately invokes the function
+👉 Allows passing arguments one by one
+
+function greet(age, city) {
+  console.log(this.name, age, city);
+}
+const user = { name: "Abhinav" };
+greet.call(user, 25, "Delhi");
+
+Output:
+Abhinav 25 Delhi
+
+✅ 2. apply()
+
+👉 Immediately invokes the function
+👉 Allows passing arguments as an array
+
+greet.apply(user, [25, "Delhi"]);
+Same output.
+
+When do we use apply?
+
+When arguments already exist in an array:
+Math.max.apply(null, [10, 20, 30]);
+
+
+✅ 3. bind()
+👉 Does NOT call the function immediately
+👉 Returns a new function with locked this
+
+const greetUser = greet.bind(user, 25, "Delhi");
+greetUser(); // now calls with fixed this + args
+
+🧠 Summary Table
+Method	  When Called?	   Arguments	Returns
+call	  Immediately	   list	        result
+apply	  Immediately	   array	    result
+bind	  Later	           list	        new function

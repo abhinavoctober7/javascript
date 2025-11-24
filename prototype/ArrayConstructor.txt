@@ -1,0 +1,120 @@
+Great! I’ll give you custom simplified code that behaves like the real JS Array so you can understand:
+1. How new Array() works.
+2. How Array.isArray() works.
+3. How both come from the SAME object.
+
+⚠️ Note: This is NOT real engine code —
+just a clear, simplified, educational version.
+
+✅ 1. Custom simplified MyArray constructor (like new Array())
+function MyArray(...args) {
+  // Create empty object
+  let arr = {};
+
+  // Add length property
+  Object.defineProperty(arr, "length", {
+    value: 0,
+    writable: true,
+    enumerable: false
+  });
+
+  for (let i = 0; i < args.length; i++) {
+      arr[i] = args[i];
+  }
+  arr.length = args.length;
+
+  // Attach Array-like prototype
+  Object.setPrototypeOf(arr, MyArray.prototype);
+
+  return arr;
+}
+
+⭐ Add array methods in prototype (like push, pop)
+MyArray.prototype.push = function (value) {
+  this[this.length] = value;
+  this.length++;
+  return this.length;
+};
+
+MyArray.prototype.pop = function () {
+  if (this.length === 0) return undefined;
+  let value = this[this.length - 1];
+  delete this[this.length - 1];
+  this.length--;
+  return value;
+};
+
+🔥 Testing
+let a = MyArray(1, 2, 3);
+a.push(4);    // works!
+a.pop();      // works!
+console.log(a);  
+
+✅ 2. Custom implementation of Array.isArray()
+Real JS does something like:
+
+Array.isArray(value) → checks internal [[Class]] or prototype
+Your custom version:
+MyArray.isMyArray = function (value) {
+  return Object.getPrototypeOf(value) === MyArray.prototype;
+};
+
+🔥 Testing
+let a = MyArray(10, 20);
+console.log(MyArray.isMyArray(a));  // true
+console.log(MyArray.isMyArray({})); // false
+
+🔥 VERY IMPORTANT
+
+This shows:
+✔ MyArray() and MyArray.isMyArray() are using the same function object, just like the real Array.
+
+Because functions in JavaScript can have: Methods, Properties
+
+Prototype objects
+
+💥 Final Combined Example (FULL Internal Simulation)
+function MyArray(...args) {
+  let arr = {};
+
+  Object.defineProperty(arr, "length", {
+    value: 0,
+    writable: true,
+    enumerable: false
+  });
+
+
+  for (let i = 0; i < args.length; i++) {
+    arr[i] = args[i];
+  }
+  arr.length = args.length;
+
+  Object.setPrototypeOf(arr, MyArray.prototype);
+
+  return arr;
+}
+
+MyArray.prototype.push = function (value) {
+  this[this.length] = value;
+  this.length++;
+  return this.length;
+};
+
+MyArray.prototype.pop = function () {
+  if (this.length === 0) return undefined;
+  let value = this[this.length - 1];
+  delete this[this.length - 1];
+  this.length--;
+  return value;
+};
+
+MyArray.isMyArray = function (value) {
+  return Object.getPrototypeOf(value) === MyArray.prototype;
+};
+
+🎯 Summary (Super Simple)
+What	      Real JS	           Your Custom
+Constructor	  new Array()	       MyArray()
+Prototype	  Array.prototype	   MyArray.prototype
+Utility fn	  Array.isArray()	   MyArray.isMyArray()
+Both same?	  YES, one object	   YES, one object
