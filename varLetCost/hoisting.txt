@@ -1,0 +1,43 @@
+Hoisting in English, in the context of JavaScript, means:
+
+“Moving something upward.”
+
+In JavaScript, it specifically refers to the behavior where variable and function declarations are conceptually moved to the top of their containing scope before the code executes.
+
+🔹 Simple Explanation in English
+When JS executes your code, it first reserves memory for declarations (variables and functions) before running the code. This makes it seem like the declarations were written at the top, even if they appear later in your code.
+
+🔹 Examples
+1. var Hoisting
+console.log(a); // undefined
+var a = 10;
+
+
+var a is hoisted → JS knows the variable exists → initialized as undefined
+Later a = 10 runs
+
+2. let / const Hoisting (TDZ)
+console.log(x); // ReferenceError
+let x = 5;
+
+
+x is hoisted but not initialized → Temporal Dead Zone (TDZ) → cannot access it yet
+
+3. Function Hoisting
+greet(); // "Hello"
+function greet() {
+  console.log("Hello");
+}
+
+
+Function declarations are fully hoisted → can call them before the definition
+
+sayHi(); // Error
+var sayHi = function() { console.log("Hi"); }
+
+
+Function expressions are not fully hoisted, only the variable declaration is hoisted
+
+🔹 Interview-Friendly Definition
+
+Hoisting is JavaScript’s behavior of moving variable and function declarations to the top of their scope before execution. Initializations are not hoisted.

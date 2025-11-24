@@ -1,0 +1,82 @@
+What is “this substitution” in JavaScript?
+This is a REAL term used in the JavaScript language specification.
+
+Let me explain it very simply.
+✅ What is “this substitution”?
+When JavaScript is in strict mode, you cannot automatically convert:
+undefined → global object, null → global object
+
+So ES5 introduced a concept called This Substitution.
+Meaning: When JavaScript evaluates this, it sometimes substitutes the value of this before using it.
+
+📌 In non–strict mode ("sloppy mode")
+If you call:
+function f() {
+  console.log(this);
+}
+f();
+You expect: window  (in browser), global  (in Node)
+
+
+Why? Because of this substitution.
+
+Rule: If this becomes undefined or null, JavaScript substitutes it with the global object.
+
+So in non–strict mode: undefined → window, null → window
+
+
+This is “this substitution”.
+📌 In strict mode
+"use strict";
+
+function f() {
+  console.log(this);
+}
+f();
+Output: undefined
+
+Why?
+Because strict mode turns off “this substitution”. this remains whatever it originally is (undefined in this case).
+
+📌 Example to see this substitution in action
+Non-Strict Mode:
+function f() {
+  console.log(this);
+}
+f();  // substitutes undefined with window
+Output: window
+
+Strict Mode:
+"use strict";
+function f() {
+  console.log(this);
+}
+f();  // NO substitution
+
+Output: undefined
+
+📌 This substitution also happens when calling functions on primitives
+Example: "hello".toUpperCase();
+
+What is "hello"? A primitive string.
+
+Primitives cannot have methods.
+
+So JavaScript does:
+
+this substitution:
+"hello" → new String("hello")   (temporary wrapper)
+
+This allows the method to work.
+
+After finishing, the wrapper is destroyed.
+
+🧠 Short Interview Answer
+
+“This substitution” is a rule in JavaScript where certain values of this (like undefined or null in non-strict mode) are automatically replaced with the global object. In strict mode this substitution does not happen. It also applies when primitives temporarily get wrapped into objects for method calls.
+
+⭐ Super Simple Summary
+Case	                        What happens	               Why
+Non-strict mode, function call	this = window	               this substitution
+Strict mode	                    this = undefined               substitution disabled
+Method on primitive	            "abc" becomes String("abc")	   substitution for methods

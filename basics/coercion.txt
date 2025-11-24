@@ -1,0 +1,71 @@
+Coercion in JavaScript means:
+
+👉 Automatically or manually converting one data type into another.
+
+JavaScript is a loosely typed language, so it often changes values behind the scenes.
+
+✅ Two Types of Coercion
+1. Implicit Coercion (Automatic)
+JavaScript changes the type automatically when needed.
+Example: console.log("5" + 1);  // "51" 
+
+
+Why?
++ with a string → converts 1 into "1"
+So "5" + "1" = "51"
+
+Another example: "10" - 2   // 8
+- is a numeric operator → converts "10" to number.
+
+
+
+2. Explicit Coercion (Manual / Intentional)
+
+You convert types yourself.
+Examples:
+
+Number("123")   // 123
+String(100)     // "100"
+Boolean(0)      // false
+
+🧠 Common Coercion Rules
+String Coercion (to string)
+String(123)  // "123"
+123 + ""    // "123" (implicit)
+
+Number Coercion
+Number("10")   // 10
+"10" * 2       // 20 (implicit)
+
+Boolean Coercion
+These become false:
+1. 0
+2. "" (empty string)
+3. null
+4. undefined
+5. NaN
+6. false
+
+Everything else → true
+
+Example:
+
+Boolean("Hello")  // true
+Boolean(0)         // false
+
+💥 Most Confusing Coercion: ==
+
+Loose equality (==) performs coercion.
+
+Examples:
+0 == false      // true (false → 0)
+"1" == 1        // true ("1" → 1)
+null == undefined  // true (special rule)
+
+🔥 Why coercion exists?
+
+Because JS is designed to be flexible and forgiving, especially for beginners and fast coding.
+But it causes confusion → why many devs prefer ===.
+
+🎯 Simple Definition (Interview-Ready)
+Coercion is JavaScript automatically or manually converting one data type into another — like number → string, string → number, boolean → number, etc.

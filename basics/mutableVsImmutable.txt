@@ -1,0 +1,65 @@
+Here is the clearest and simplest explanation of mutable vs immutable in JavaScript 👇
+
+🔵 1. Mutable (Changeable)
+Mutable = the value can be changed or modified in place.
+Objects in JS are mutable.
+Examples:
+Object { }, Array [ ], Function, Map, Set, Date, RegExp
+
+✅ You can modify them:
+const obj = { name: "Abhinav" };
+obj.name = "Kumar";      // changed
+
+const arr = [1, 2];
+arr.push(3);             // changed
+
+
+You are not replacing the entire obj/arr, You are modifying their internal values.
+
+🔴 2. Immutable (Not changeable)
+Immutable = the value CANNOT be changed once created.
+Primitive values in JS are immutable:
+Number, String, Boolean, Null, Undefined, Symbol, BigInt
+
+❗ You cannot modify them — only replace them.
+
+Example with string:
+let str = "Hello";
+str[0] = "Y";   // ❌ does nothing
+console.log(str); // "Hello"
+
+
+If you “change” a primitive, you're actually creating a new value:
+
+str = "World"; // new string created
+
+🔥 Key Difference
+Type	    Mutable?	 Stored Where?	  Example
+Primitive	❌ No	    Stack	         "A", 10, true, null
+Object	    ✅ Yes	    Heap	         {}, [], new Date()
+
+🧠 Why primitives are immutable?
+They are simple fixed-size values.
+They are stored in the stack, which prefers immutability for performance.
+If strings were mutable, security & performance would break.
+
+
+
+🧠 Why objects are mutable?
+Objects store dynamic data.
+They can grow or shrink.
+Stored in heap, which allows flexibility.
+
+🎯 Super Simple Example
+Primitive (immutable):
+let x = 10;
+x = 20;   // replaced, not modified
+
+Object (mutable):
+let user = { age: 25 };
+user.age = 30;   // modified
+
+📝 In One Line:
+
+Mutable = change inside the same memory
+Immutable = create a new value instead of changing

@@ -1,0 +1,102 @@
+Here is the clearest and simplest explanation of var in JavaScript that covers everything interviewers ask 👇
+
+🔥 What is var?
+var is the old way to declare variables in JavaScript (before ES6/2015).
+var x = 10;
+
+It still works today, but it has problems, which is why we use let and const now.
+
+
+
+🧨 Key Features of var (Very Important)
+These 4 points are asked in almost every interview 👇
+
+1️⃣ Function Scoped (NOT block-scoped)
+var is only limited to functions, not blocks (if, for, {}).
+
+Example:
+if (true) {
+  var x = 10;
+}
+console.log(x); // 10 → NOT block-scoped
+
+But inside a function:
+function test() {
+  var y = 20;
+}
+console.log(y); // ❌ Error
+
+2️⃣ Hoisted (but initialized as undefined)
+
+When you use var, the declaration is moved to the top of the scope during execution.
+Example:
+console.log(a); // undefined (not error)
+var a = 5;
+
+Behind the scenes:
+var a;       // hoisted
+console.log(a);
+a = 5;
+
+3️⃣ Can be redeclared
+
+This is a big problem and causes bugs:
+
+var a = 1;
+var a = 2;   // allowed 😱
+
+console.log(a); // 2
+
+
+let and const ❌ do not allow redeclaration.
+
+4️⃣ Attaches to the global object (window in browser)
+var x = 10;
+console.log(window.x); // 10
+
+
+But let and const do NOT attach to global object.
+
+🧨 Why is var considered bad?
+
+Because it causes weird bugs due to:
+
+Hoisting confusion
+
+Accidental redeclaration
+
+Not block-scoped
+
+Polluting global scope
+
+Harder to maintain
+
+Example bug:
+
+for (var i = 1; i <= 3; i++) {
+  setTimeout(() => console.log(i), 1000);
+}
+Output:
+4, 4, 4
+
+
+Reason:
+var is not block scoped → all callbacks share same i.
+
+💡 Quick Comparison
+Feature	  var	              let	         const
+Scope	    function	        block	       block
+Hoisting	yes (undefined)	  yes (TDZ)	   yes (TDZ)
+Redeclare	yes	              no	         no
+Reassign	yes	              yes	         no
+Adds to window yes	        no	         no
+
+
+🧠 When to use var?
+
+In modern JavaScript → never recommended
+Use let / const.
+
+🎯 One-line definition (Interview Perfect)
+
+var is a function-scoped, hoisted, redeclarable variable that attaches to the global object, which often causes bugs—so modern JS prefers let and const.

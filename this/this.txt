@@ -1,0 +1,79 @@
+"use strict";
+
+// "this" in global space.
+console.log(this); /* -> window or global object*/
+
+// "this" in function.
+function x() {
+  /* The value of this here will depend upon the strict or non-strict mode.
+   * In non-strict mode, "this substitution" will happen. -> window
+   * In strict mode, -> undefined */
+  console.log(this);
+}
+x(); // -> undefined
+window.x(); // -> window
+
+// "this" inside object's method.
+const obj = {
+  a: 10,
+  x: function () {
+    console.log(this); /* "this" will be obj */
+  },
+};
+
+obj.x();
+
+// "this" inside the arrow function.
+
+const obj1 = {
+  a: 10,
+  x: () => {
+    console.log(this); /* Enclosing Lexical Context */
+  },
+};
+
+obj1.x();
+
+// 📌 Step-by-step explanation (SUPER CLEAR)
+// Step 1 — Where was the arrow function created?
+
+// Right here:
+// const obj1 = {
+//   a: 10,
+//   x: () => {   // created here
+//     console.log(this);
+//   },
+// };
+// This line runs in the global execution context.
+// So:
+// this = window   (in browser)
+// this = global   (in Node)
+
+// Step 2 — Arrow function does NOT bind its own this
+// So it borrows this from outside → global scope.
+
+// Step 3 — Calling obj1.x() does NOT change this
+
+// Normal functions can change this based on how they are called:
+// obj1.x()  // would set this = obj1 if x was a normal function
+
+// But arrow functions IGNORE this rule.
+
+const obj2 = {
+  a: 10,
+  x: function () {
+    /* For this function, obj2 will be "this" */
+    // console.log(this); /* console.log 2 lines below will act like this line. */
+    const y = () => {
+      console.log(this); /* So for "this", obj2 will be "this" */
+    };
+    // const y = function() {
+    //   console.log(this); /* So for "this", window will be "this" */
+    // };
+    y();
+  },
+};
+
+obj2.x();
+
+// "this" inside DOM elements  =>   reference to HTMLElement

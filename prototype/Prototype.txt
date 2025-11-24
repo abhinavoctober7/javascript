@@ -1,0 +1,31 @@
+✅ 1. What is a Prototype?
+A prototype is simply an object from which other objects can inherit methods and properties.
+
+In JavaScript: Every object has a hidden internal property called [[Prototype]].
+You can see it in Chrome DevTools as __proto__. This prototype contains shared methods.
+
+✅ 2. How Arrays Get Their Methods?
+
+When you create an array like:
+
+const arr = [1, 2, 3];
+JavaScript does NOT attach push, pop, map, filter directly to arr.
+
+Instead:
+
+arr’s prototype is Array.prototype
+All methods like push, pop, map, filter are defined once in Array.prototype
+
+Your array inherits these methods
+So when you call: arr.push(4);
+
+The JS engine checks: Does arr contain push directly? ❌ No
+
+Then check arr.__proto__ (which is Array.prototype)
+
+Does Array.prototype have push? ✔️ Yes → use it
+
+This is called prototype lookup / prototype chaining.
+
+🔥 Prototype Chain of an Array
+arr → Array.prototype → Object.prototype → null

@@ -1,0 +1,58 @@
+Shadowing in JavaScript means:
+A variable in an inner scope having the same name as a variable in an outer scope, so the inner one “shadows” (hides) the outer one.
+
+JavaScript will use the nearest variable with that name.
+🔹 Simple Example
+let a = 10;      // outer variable
+function test() {
+  let a = 20;    // inner variable (shadows outer 'a')
+  console.log(a);
+}
+
+test(); // 20
+console.log(a); // 10
+
+
+Inside the function:
+The inner a = 20
+It shadows the outer a = 10
+The outer a becomes temporarily invisible inside the function
+
+🔹 Shadowing with var
+var is function-scoped, so shadowing behaves differently:
+var x = 5;
+if (true) {
+  var x = 100;   // SAME variable (not shadowing!)
+}
+console.log(x); // 100
+Here no shadowing happens because both x belong to the same function/global scope.
+
+🔹 Shadowing with let / const (Correct Shadowing)
+let x = 5;
+if (true) {
+  let x = 20;    // shadowing
+  console.log(x); // 20
+}
+console.log(x); // 5
+
+🔹 Illegal Shadowing (Important Interview Question)
+let a = 10;
+function f() {
+  var a = 20; // ❌ illegal shadowing
+}
+var cannot shadow a let/const in the same scope chain.
+
+
+
+
+But this is OK:
+
+var a = 10;
+
+function f() {
+  let a = 20; // ✔️ legal shadowing
+}
+
+🔹 Interview-Friendly Definition
+
+Shadowing occurs when a variable declared within a certain scope (inner scope) has the same name as a variable in an outer scope, making the inner variable override the outer one within that scope.
