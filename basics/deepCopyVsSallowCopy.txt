@@ -1,0 +1,72 @@
+🟦 What is Shallow Copy?
+A shallow copy copies only the top-level values.
+
+If the object contains nested objects/arrays,
+👉 it copies only the reference, NOT the actual nested values.
+
+Example:
+const obj = { 
+  name: "Abhi",
+  address: { city: "Delhi" }
+};
+const copy = { ...obj }; // shallow copy
+copy.address.city = "Mumbai";
+console.log(obj.address.city);  // ❗ Output: "Mumbai"
+Why?
+
+Because address object is same reference in both obj and copy.
+
+🟩 What is Deep Copy?
+
+A deep copy creates a brand-new, independent copy of the entire object.
+All nested objects/arrays are also copied separately.
+
+Example:
+const obj = { 
+  name: "Abhi",
+  address: { city: "Delhi" }
+};
+const copy = JSON.parse(JSON.stringify(obj)); // deep copy
+copy.address.city = "Mumbai";
+console.log(obj.address.city);  // ✅ Output: "Delhi"
+
+Why?
+
+Because now address inside copy is a different object in memory.
+🔥 Main Difference (1 Line)
+Shallow Copy	                    Deep Copy
+Copies only top-level	            Copies entire nested structure
+Nested values share same reference	Nested values are fully independent
+Faster	                            Slower
+Not safe for complex objects	    Safe for complex objects
+🔧 Ways to Make Shallow Copy
+
+(Only top-level copied)
+For Objects:
+const copy = Object.assign({}, obj);
+const copy = { ...obj };
+
+For Arrays:
+const copy = [...arr];
+const copy = arr.slice();
+
+🔧 Ways to Make Deep Copy
+(Everything copied)
+1. JSON method (simple)
+const deepCopy = JSON.parse(JSON.stringify(obj));
+
+❗ Fails with:
+functions, undefined, Date, Map/Set
+
+2. Structured Clone (BEST) ✔✔
+const deepCopy = structuredClone(obj);
+
+Works for: Dates, Arrays, Objects, Maps, Sets, ❌ Not for functions.
+
+🎯 Final Summary (Super Easy)
+
+✔ Shallow copy → copy only first layer
+✔ Deep copy → copy everything
+
+✔ Shallow is faster but dangerous (because shared references)
+✔ Deep is safe but slower
