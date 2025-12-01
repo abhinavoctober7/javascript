@@ -1,0 +1,57 @@
+In JavaScript, functions are first-class citizens.
+This is a core concept in interviews.
+
+Note: Not Just function, all other data types are also first-class citizens in JS.
+
+✅ Simple Definition
+If something is a first-class citizen (or first-class object), it means it can be treated like a normal value.
+------> You can store it in variables, pass it as arguments, return it from functions, etc.
+
+In JavaScript, functions are first-class citizens.
+🧠 What can a first-class citizen do?
+
+If a value is first-class, it can:
+✔ 1. Be stored in a variable
+const greet = function () {
+  console.log("Hello");
+};
+
+✔ 2. Be passed as an argument
+setTimeout(() => console.log("Hi"), 1000);
+
+✔ 3. Be returned from another function
+function outer() {
+  return function () {
+    console.log("Inner");
+  };
+}
+
+✔ 4. Be stored in arrays or objects
+const arr = [() => console.log("A"), () => console.log("B")];
+
+🎯 Simple Interview Definition
+Functions are treated as values in JavaScript.
+That’s why we can pass them, store them, and return them — meaning they are first-class citizens.
+
+🔥 Why important?
+Because of first-class functions, JavaScript supports:
+1. Higher-Order Functions (HOFs)
+2. Callbacks
+3. Closures
+4. Functional programming
+5. Promises
+6. Event listeners
+
+🚀 Very Simple Example
+function sayHello() {
+  console.log("Hello");
+}
+
+function executor(fn) {
+  fn(); // calling a function passed as a value
+}
+
+executor(sayHello);
+
+
+Here, sayHello is used like data, proving it is first-class.

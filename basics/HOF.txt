@@ -1,0 +1,37 @@
+A HOF (Higher-Order Function) is a function that either takes another function as an argument OR returns a function.
+
+It is a core concept in JavaScript (because JS treats functions as first-class citizens).
+
+✅ Simple Interview Definition
+A Higher-Order Function is a function that accepts another function as a parameter, or returns a function, or both.
+
+🔥 Examples of HOF in JavaScript
+✔ 1. Function that takes another function → HOF
+function greet(fn) {
+  fn();
+}
+greet(() => console.log("Hello!"));
+
+✔ 2. Function that returns another function → HOF
+function multiplier(x) {
+  return function (y) {
+    return x * y;
+  };
+}
+const double = multiplier(2);
+console.log(double(5)); // 10
+
+✔ 3. Many built-in JS functions are HOFs
+1. map: [1, 2, 3].map(num => num * 2);
+2. filter: [5, 10, 15].filter(num => num > 10);
+3. reduce: [1, 2, 3].reduce((sum, val) => sum + val, 0);
+All of these take a function as an argument, so they are HOFs.
+
+🔥 Quick Difference
+Term	        Meaning	                                        Example
+HOC (React)	    Takes component → returns enhanced component	withAuth(MyComp)
+HOF (JS)	    Takes function → returns a function	            map(), filter()
+
+
+🧠 Why HOF is useful?
+Reusability, Cleaner code, Functional programming, Abstractions, Callback handling

@@ -1,0 +1,71 @@
+Here is a clear and simple comparison between Function Declaration (Definition) and Function Expression in JavaScript.
+
+✅ 1. Function Declaration (Function Definition)
+✔ Syntax:
+function sayHello() {
+  console.log("Hello!");
+}
+
+✔ Key Features:
+1. Hoisted → You can call the function before it is defined.
+2. Always creates a named function.
+3. Load at the time of compilation.
+4. Good for normal reusable functions.
+
+✔ Example:
+greet(); // Works
+
+function greet() {
+  console.log("Good Morning!");
+}
+
+✅ 2. Function Expression
+✔ Syntax:
+const sayHello = function () {
+  console.log("Hello!");
+};
+
+
+or arrow function:
+
+const sayHello = () => console.log("Hello!");
+
+✔ Key Features:
+1. NOT hoisted the same way → You cannot call it before creation.
+2. Can be anonymous (no name).
+3. Function is created at runtime.
+
+4. Commonly used in callbacks, closures, higher-order functions.
+
+❌ Example (won't work):
+greet();  // ❌ Error: greet is not a function
+
+const greet = function () {
+  console.log("Hello!");
+};
+
+🔥 Quick Comparison Table
+Feature	                  Function Declaration	       Function Expression
+Hoisting	                ✔ Yes	                       ❌ No (variable is hoisted, not function)
+Call before definition?	  ✔ Allowed	                   ❌ Not allowed
+Name	                    Always named	               Can be anonymous
+Created	                  At compile time	             At runtime
+Usage	                    Normal functions	           Callbacks, closures, HOFs
+
+
+
+ 
+🔍 Example Difference (Most Important)
+Function Declaration (works before definition)
+hello(); // ✔ works
+
+function hello() {
+  console.log("Hi!");
+}
+
+Function Expression (does NOT work)
+hello(); // ❌ TypeError
+
+const hello = function () {
+  console.log("Hi!");
+};

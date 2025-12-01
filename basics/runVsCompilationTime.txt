@@ -1,0 +1,60 @@
+Here is a clear, simple, interview-friendly explanation of Compilation Time vs Runtime:
+✅ Compilation Time (Compile Time)
+Compilation time is the phase before your program starts running.
+It is when the code is checked and prepared by the engine (or compiler).
+
+✔ What Happens at Compilation Time?
+Syntax checking, Hoisting, Memory allocation for variables and functions, Creation of execution context (in JS), Scope resolution, Function declarations are stored
+
+Errors like syntax errors are caught
+✔ Example (JS):
+console.log(a); // undefined (not error)
+var a = 5;
+
+
+Why?
+Because during compile time, JS hoists var a.
+
+✅ Runtime (Execution Time)
+Runtime is the phase when the code is actually executed line by line.
+
+✔ What Happens at Runtime?
+1. Code runs line-by-line, Variables get assigned actual values, Functions get executed
+2. Errors like: TypeError, ReferenceError (in some cases), Runtime exceptions
+3. DOM manipulation
+4. API calls
+5. Loops & conditions execute
+
+✔ Example:
+console.log(x); // ❌ ReferenceError: x is not defined
+console.log("Hello");
+
+
+Here x was never declared, so runtime throws an error.
+
+🔥 Simple Analogy
+Phase	                   Meaning
+Compilation Time	       Checking and preparing the recipe before cooking
+Runtime	                   Actual cooking happens
+
+
+🔥 Key Differences (Quick Table)
+Feature	          Compilation Time	         Runtime
+When?	          Before execution	         During execution
+Errors detected	  Syntax, scope, hoisting	 TypeError, ReferenceError, logical errors
+JS Actions	      Hoisting, scope creation	 Value assignments, function calls
+Code runs?	      ❌ No	                     ✔ Yes
+Memory	          Allocates space for         Updates values, manages call stack
+                  variables/functions	
+
+
+🧠 JS Special Notes
+1. JavaScript is not fully compiled like C++ or Java.
+2. It uses Just-In-Time (JIT) compilation + interpretation.
+
+Still, JS has a compile phase where:
+Hoisting happens, Scope is created, Syntax is analyzed
+
+🎯 Short Interview Answer
+1. Compilation time is when the JS engine scans the code, performs hoisting, allocates memory, and checks syntax.
+2. Runtime is when the code executes line-by-line, variables get values, functions run, and runtime errors occur.

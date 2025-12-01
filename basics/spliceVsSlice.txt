@@ -1,0 +1,42 @@
+Here is the clearest and simplest explanation of slice vs splice — perfect for interviews.
+
+🔥 Slice vs Splice in JavaScript
+Feature	                slice()	         splice()
+Mutates original array?	❌ No	        ✔ Yes
+Returns?	            New array	     Removed elements
+Purpose	                Copy a portion	 Add/remove elements
+Arguments	            (start, end)	 (start, deleteCount, ...items)
+End index	            Not included	 Not applicable
+Type	                Non-destructive	 Destructive
+
+
+1️⃣ slice()
+✔ Does NOT modify the original array
+✔ Returns a new array
+✔ Used to copy or extract elements
+Syntax: arr.slice(start, end);
+Example: const arr = [1, 2, 3, 4, 5];
+const result = arr.slice(1, 4);
+console.log(result); // [2, 3, 4]
+console.log(arr);    // [1, 2, 3, 4, 5] (unchanged)
+
+2️⃣ splice()
+✔ Modifies the original array
+✔ Can remove or insert elements
+✔ Returns the removed elements
+Syntax: arr.splice(start, deleteCount, ...newItems);
+
+Example 1 – Remove elements
+const arr = [1, 2, 3, 4];
+const removed = arr.splice(1, 2);
+console.log(removed); // [2, 3]
+console.log(arr);     // [1, 4] (modified)
+
+Example 2 – Insert elements
+const arr = [1, 4];
+arr.splice(1, 0, 2, 3);
+console.log(arr); // [1, 2, 3, 4]
+
+🎯 Very Short Interview Line
+slice creates a copy without modifying the original array.
+splice modifies the original array by adding/removing elements.
