@@ -1,0 +1,146 @@
+Here are all the different ways to create objects in JavaScript, from basic to advanced.
+These are the patterns interviewers expect you to know.
+
+✅ 1. Object Literal (Most Common)
+const obj = {
+  name: "John",
+  age: 25
+};
+✔ Easiest
+✔ Widely used
+✔ Fastest way
+
+✅ 2. Using new Object() Constructor
+const obj = new Object();
+obj.name = "John";
+obj.age = 25;
+Equivalent to object literal, just longer.
+
+✅ 3. Constructor Function
+Used before ES6 classes.
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+}
+const p1 = new Person("John", 30);
+
+✅ 4. ES6 Class
+Syntactic sugar over constructor function.
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+}
+const p1 = new Person("John", 30);
+
+✅ 5. Object.create() (Prototype-Based Object)
+Creates a new object with a specific prototype.
+const proto = {
+  greet() {
+    console.log("Hello");
+  }
+};
+const obj = Object.create(proto);
+obj.name = "John";
+
+
+Very important for prototype-based inheritance.
+
+✅ 6. Factory Function
+
+A simple function that returns an object.
+
+function createPerson(name, age) {
+  return {
+    name,
+    age,
+    greet() {
+      console.log("Hello");
+    }
+  };
+}
+
+const p = createPerson("John", 25);
+
+
+✔ No need for new
+✔ Very flexible
+
+✅ 7. Using new with Built-In Constructors
+const obj = new Object();
+const arr = new Array();
+const date = new Date();
+const map = new Map();
+
+
+(Not recommended for arrays: use [] instead.)
+
+✅ 8. Using Object.assign()
+const obj = Object.assign({}, { a: 1, b: 2 });
+
+
+Or copy + add:
+
+const obj = Object.assign({ c: 3 }, { a: 1, b: 2 });
+
+✅ 9. Spread Operator
+const obj1 = { a: 1 };
+const obj2 = { ...obj1, b: 2 };
+
+
+Common for cloning or merging.
+
+✅ 10. Using JSON
+
+Parse JSON string into object:
+
+const obj = JSON.parse('{"name": "John", "age": 25}');
+
+
+Convert object to string:
+
+JSON.stringify(obj);
+
+⭐ BONUS (Advanced)
+11. Singleton Pattern
+const Singleton = (function () {
+  let instance;
+
+  function createInstance() {
+    return { name: "Single Object" };
+  }
+
+  return {
+    getInstance() {
+      if (!instance) instance = createInstance();
+      return instance;
+    }
+  };
+})();
+
+const obj1 = Singleton.getInstance();
+
+🎯 Summary (For Interview Answer)
+
+You can create objects in JS using:
+
+Object literal {}
+
+new Object()
+
+Constructor functions
+
+ES6 Classes
+
+Object.create()
+
+Factory functions
+
+Object.assign()
+
+Spread operator { ...obj }
+
+JSON parsing
+
+Singleton pattern

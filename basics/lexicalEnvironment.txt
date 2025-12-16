@@ -1,0 +1,77 @@
+✅ Lexical Environment (Simple Definition)
+
+A Lexical Environment is a structure that stores:
+1. Local variables (let, const, function arguments)
+2. Function declarations
+3. A reference to the outer (parent) environment
+
+It is created every time:
+1. A function is called
+2. A block executes (if, for, { })
+3. A script or module starts
+
+📌 Why is it called "Lexical"?
+Because the environment is determined by where the code is written (lexically), not where it is executed. JavaScript looks at the physical placement of your code to decide the scope.
+
+🧠 Example to Understand Lexical Environment
+let a = 10;
+function outer() {
+  let b = 20;
+
+  function inner() {
+    let c = 30;
+    console.log(a, b, c);
+  }
+
+  inner();
+}
+outer();
+
+Environments created:
+1️⃣ Global Lexical Environment
+a: 10
+outer: function
+outerEnv: null
+
+2️⃣ outer() Lexical Environment
+b: 20
+inner: function
+outerEnv: global
+
+3️⃣ inner() Lexical Environment
+c: 30
+outerEnv: outer()
+
+
+When inner() runs, it searches variables like this:
+inner → outer → global
+
+
+This chain is called the Scope Chain.
+
+🧩 Important Facts
+✔ Each function has its own Lexical Environment
+Created every time the function is invoked.
+
+✔ Variables are stored in the "Environment Record"
+This is part of the Lexical Environment.
+
+✔ The link to the parent is fixed
+
+Because the function “remembers” where it was written → this creates closure.
+
+🎯 One-Line Definition
+
+A Lexical Environment is the internal structure that stores variables and the reference to its outer scope, created based on where code is written.
+
+
+function outer(){
+    let arrFun = [];
+    for(var i = 0; i < 3; i++){
+        arrFun.push(function fn(){
+            console.log(i)
+        })
+    }
+    return arrFun;
+}
+console.log(outer()[0]());

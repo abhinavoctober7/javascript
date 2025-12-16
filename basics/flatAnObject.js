@@ -20,3 +20,14 @@ Object.prototype.flatAnObject = function (obj, parent = "", res = {}) {
 };
 
 console.log(obj.flatAnObject());
+
+var varName = 10;
+function b() {
+  console.log("In B", varName);
+}
+function fn() {
+  var varName = 20;
+  b();
+  console.log("In FN", varName);
+}
+fn();

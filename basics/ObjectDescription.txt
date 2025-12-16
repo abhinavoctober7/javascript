@@ -1,0 +1,98 @@
+Great — you are talking about Property Descriptors in JavaScript.
+When you create an object normally, every property automatically gets three hidden flags:
+1. writable
+2. enumerable
+3. configurable
+These flags define how the property behaves in the object.
+
+Let’s understand each one very clearly with examples 👇
+🔥 Property Descriptor in JavaScript
+
+Every property in an object looks like this internally:
+{
+  value: ...,
+  writable: true/false,
+  enumerable: true/false,
+  configurable: true/false
+}
+Now let's break each one.
+
+1️⃣ writable
+
+Controls whether the value can be changed.
+Example:
+const obj = {};
+
+Object.defineProperty(obj, "name", {
+  value: "Alice",
+  writable: false
+});
+obj.name = "Bob";  // ❌ Can't change
+console.log(obj.name); // "Alice"
+👉 If writable: false, JavaScript ignores any assignment.
+
+2️⃣ enumerable
+Controls whether the property shows up in loops like:
+for...in, Object.keys(), JSON.stringify()
+
+Example:
+const obj = {};
+
+Object.defineProperty(obj, "secret", {
+  value: "hidden",
+  enumerable: false
+});
+
+console.log(Object.keys(obj));  // []  (secret is hidden)
+console.log(obj.secret);        // "hidden" (but still accessible)
+👉 If enumerable: false, property is hidden from loops, but still exists.
+
+3️⃣ configurable
+
+Controls whether the property: can be deleted
+
+can be modified (changing descriptors)
+Example: const obj = {};
+
+Object.defineProperty(obj, "id", {
+  value: 100,
+  configurable: false
+});
+
+delete obj.id;     // ❌ delete fails
+obj.id = 200;      // ✔️ works if writable: true
+
+
+If configurable: false:
+You cannot delete the property
+You cannot change enumerable/writable/configurable flags later
+But you can change the value only if writable: true
+
+⭐ Full Example With All Three Descriptors
+const obj = {};
+
+Object.defineProperty(obj, "name", {
+  value: "Alice",
+  writable: false,
+  enumerable: true,
+  configurable: false
+});
+
+
+Meaning:
+name cannot be modified
+It will appear in loops
+Cannot be deleted or reconfigured
+
+🔍 How to check a property’s descriptors
+const user = { age: 25 };
+console.log(Object.getOwnPropertyDescriptor(user, "age"));
+
+Output:
+{
+  value: 25,
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+👉 Default values for normal object properties are true for all flags.

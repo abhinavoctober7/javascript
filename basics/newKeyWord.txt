@@ -1,0 +1,82 @@
+Here is a line-by-line explanation of your code in a very clear and simple way:
+function ConstructorExample(fName, lName) {
+  this.firstName = fName;
+  this.lName = lName;
+  this.printFullName = function () {
+    console.log(this.firstName + " " + this.lName);
+  };
+}
+
+🧩 Line-by-line Explanation
+1. function ConstructorExample(fName, lName) {
+You are defining a constructor function.
+Constructor functions are used to create objects.
+fName and lName are parameters (inputs) passed during object creation.
+
+2. this.firstName = fName;
+this refers to the new object being created (only when called with new keyword).
+This line creates a property called firstName inside the new object.
+It stores the value passed as fName.
+
+Example: If you call new ConstructorExample("Alice", "Smith"),
+then inside:
+this.firstName = "Alice"
+
+3. this.lName = lName;
+Creates another property lName inside the object.
+Stores the value passed as lName.
+
+Example: this.lName = "Smith"
+
+4. this.printFullName = function () { ... };
+You are adding a method (a function inside an object) to the object.
+printFullName will be available for every object created with this constructor.
+
+5. Inside that method:
+console.log(this.firstName + " " + this.lName);
+this inside the method refers to the same object.
+It prints firstName + space + lName.
+For person1, this becomes "Alice Smith".
+
+🧩 Creating an Object
+const person1 = new ConstructorExample("Alice", "Smith");
+
+What does new do? (Very important)
+When you write new:
+It creates a new empty object: {}
+It sets this to point to that new object
+
+It adds the prototype:
+newObj.__proto__ = ConstructorExample.prototype
+
+It executes the function body
+
+It automatically returns the new object
+
+So after this line, person1 becomes:
+
+{
+  firstName: "Alice",
+  lName: "Smith",
+  printFullName: function () {
+    console.log("Alice Smith");
+  }
+}
+
+🧩 Calling the method
+person1.printFullName(); // Output: Alice Smith
+
+
+This calls the printFullName method on person1.
+
+this inside the method now refers to person1.
+
+It prints "Alice Smith".
+
+🎯 Final Summary
+Line / Concept	Meaning
+ConstructorExample()	A special function to create objects
+this.firstName	Creates property inside object
+this.lName	Another property
+this.printFullName	A method added to each created object
+new ConstructorExample()	Creates & returns a new object

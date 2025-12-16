@@ -1,0 +1,74 @@
+Currying is a functional programming technique where a function that takes multiple arguments is transformed into a series of functions, each taking one argument at a time.
+
+✅ Simple Definition
+Currying converts a function f(a, b) into f(a)(b).
+
+So instead of passing all arguments at once, you pass them one by one, and each call returns a new function until all arguments are received.
+
+🧠 Easy Example
+
+Normal function:
+function add(a, b) {
+  return a + b;
+}
+
+Curried version:
+function add(a) {
+  return function (b) {
+    return a + b;
+  };
+}
+
+
+Usage:
+add(10)(5); // 15
+🔥 Real Example (Very Useful)
+function multiply(a) {
+  return function (b) {
+    return a * b;
+  };
+}
+
+const multiplyBy2 = multiply(2);
+console.log(multiplyBy2(10)); // 20
+
+const multiplyBy5 = multiply(5);
+console.log(multiplyBy5(10)); // 50
+
+
+You created factory functions using currying.
+
+
+📦 More Examples
+Example 1: print message
+function greet(greeting) {
+  return function (name) {
+    console.log(greeting + ", " + name);
+  };
+}
+
+const greetHello = greet("Hello");
+greetHello("Abhinav");
+
+Example 2: Infinite Currying (Advanced)
+function add(a) {
+  return function (b) {
+    if (b) return add(a + b);
+    return a;
+  };
+}
+
+console.log(add(1)(2)(3)(4)()); // 10
+
+⭐ One-Line Definition
+Currying breaks a multi-argument function into a chain of single-argument functions that remember the previous arguments using closure.
+
+
+function add(a) {
+  return function (b) {
+    if (b !== undefined) {
+      return add(a + b); // keep adding
+    }
+    return a; // stop when no argument is passed
+  };
+};
